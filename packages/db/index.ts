@@ -4,33 +4,34 @@ import { Kysely } from "kysely";
 import { PlanetScaleDialect } from "kysely-planetscale";
 import { nanoid } from "nanoid";
 
-import type { ColumnType, GeneratedAlways } from "kysely";
+import type { ColumnType } from "kysely";
+
+import type { SubscriptionPlan } from "./enums";
+
 export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
   : ColumnType<T, T | undefined, T>;
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-import type { SubscriptionPlan } from "./enums";
-
 export type Customer = {
-    id: string;
-    stripeId: string;
-    subscriptionId: string | null;
-    clerkUserId: string;
-    name: string | null;
-    plan: SubscriptionPlan | null;
-    paidUntil: Timestamp | null;
-    endsAt: Timestamp | null;
+  id: string;
+  stripeId: string;
+  subscriptionId: string | null;
+  clerkUserId: string;
+  name: string | null;
+  plan: SubscriptionPlan | null;
+  paidUntil: Timestamp | null;
+  endsAt: Timestamp | null;
 };
 export type Post = {
-    id: string;
-    userId: string;
-    title: string;
-    content: string;
+  id: string;
+  userId: string;
+  title: string;
+  content: string;
 };
 export type DB = {
-    Customer: Customer;
-    Post: Post;
+  Customer: Customer;
+  Post: Post;
 };
 
 
